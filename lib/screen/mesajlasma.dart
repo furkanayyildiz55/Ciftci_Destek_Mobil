@@ -38,8 +38,6 @@ class _MesajlasmaState extends State<Mesajlasma> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // mesajAlici(context),
-            // mesajGonderici(context),
             Expanded(
               child: StreamBuilder<List<Mesaj>>(
                 stream: firestoreDbServices.getMesages(
@@ -98,7 +96,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
               widget.uzmanUser!.adSoyad.toString(),
               overflow: TextOverflow.clip,
             ),
-            Text("Online",
+            Text(widget.appUser!.uzmanMi==true ? "Uzman" : "Çiftçi" ,
                 style: TextStyle(color: Colors.green.shade200, fontSize: 13))
           ],
         ),

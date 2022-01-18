@@ -7,11 +7,15 @@ import 'package:ciftci_destek_mobil/screen/user_profile.dart';
 import 'package:ciftci_destek_mobil/screen/uzmana_sor.dart';
 import 'package:ciftci_destek_mobil/themes/main_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class MainPaage extends StatefulWidget {
   AppUser? appUser;
   final String? userID;
+  User? user = FirebaseAuth.instance.currentUser;
+
   MainPaage({this.userID, Key? key}) : super(key: key);
 
   @override
@@ -23,6 +27,9 @@ class _MainPaageState extends State<MainPaage> {
   void initState() {
     super.initState();
     KullaniciVerileriGetir();
+    //UYARI GÖSTERİLMİYOR
+    SchedulerBinding.instance!
+        .addPostFrameCallback((_) => EmailDogrulamaUyarisi());
   }
 
   @override
@@ -40,7 +47,12 @@ class _MainPaageState extends State<MainPaage> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (BuildContext)=> UserProfile(appUser: widget.appUser,) ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext) => UserProfile(
+                                appUser: widget.appUser,
+                              )));
                 },
                 icon: const Icon(Icons.account_circle_outlined))
           ],
@@ -120,7 +132,6 @@ class _MainPaageState extends State<MainPaage> {
                                           appUser: widget.appUser,
                                         )));
                           },
-                          
                         ),
                         cards("lib/assets/fertilizer.png", 'Hal Fiyatları'),
                         GestureDetector(
@@ -132,7 +143,8 @@ class _MainPaageState extends State<MainPaage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>const ConversionPage()));
+                                    builder: (context) =>
+                                        const ConversionPage()));
                           },
                         ),
                       ],
@@ -204,5 +216,35 @@ class _MainPaageState extends State<MainPaage> {
       debugPrint(
           "Main Page- User verileri çekildi : ${widget.appUser!.adSoyad}");
     });
+  }
+
+  void EmailDogrulamaUyarisi() {
+    if (widget.user!.emailVerified == false) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Çiftçi Destek'),
+          content: const Text(
+              'Email doğrulaması yapılmadı. Lüften profil sayfasından doğrulamanızı yapınız. !'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext) => UserProfile(
+                    appUser: widget.appUser,
+                  ),
+                ),
+              ),
+              child: const Text('Profil Sayfası'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Tamam'),
+            ),
+          ],
+        ),
+      );
+    } 
   }
 }
