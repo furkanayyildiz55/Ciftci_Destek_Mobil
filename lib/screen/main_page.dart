@@ -3,6 +3,7 @@ import 'package:ciftci_destek_mobil/models/firestore_db_services.dart';
 import 'package:ciftci_destek_mobil/screen/conversion_page.dart';
 import 'package:ciftci_destek_mobil/screen/gubre_fiyatlari.dart';
 import 'package:ciftci_destek_mobil/screen/hava_durumu.dart';
+import 'package:ciftci_destek_mobil/screen/listeleme.dart';
 import 'package:ciftci_destek_mobil/screen/user_profile.dart';
 import 'package:ciftci_destek_mobil/screen/uzmana_sor.dart';
 import 'package:ciftci_destek_mobil/themes/main_colors.dart';
@@ -102,9 +103,17 @@ class _MainPaageState extends State<MainPaage> {
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,
                       children: <Widget>[
-                        cards(
-                          "lib/assets/shovel.png",
-                          'Toprak Analizi',
+                        GestureDetector(
+                          child: cards(
+                            "lib/assets/shovel.png",
+                            'Toprak Analizi',
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Listeleme()));
+                          },
                         ),
                         GestureDetector(
                           child: cards(
@@ -245,6 +254,6 @@ class _MainPaageState extends State<MainPaage> {
           ],
         ),
       );
-    } 
+    }
   }
 }
