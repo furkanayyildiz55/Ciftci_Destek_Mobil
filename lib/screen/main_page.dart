@@ -1,5 +1,6 @@
 import 'package:ciftci_destek_mobil/models/app_user.dart';
 import 'package:ciftci_destek_mobil/models/firestore_db_services.dart';
+import 'package:ciftci_destek_mobil/screen/calc_page.dart';
 import 'package:ciftci_destek_mobil/screen/conversion_page.dart';
 import 'package:ciftci_destek_mobil/screen/gubre_fiyatlari.dart';
 import 'package:ciftci_destek_mobil/screen/hava_durumu.dart';
@@ -127,7 +128,18 @@ class _MainPaageState extends State<MainPaage> {
                                     builder: (context) => Home()));
                           },
                         ),
-                        cards("lib/assets/calculator.png", 'Gelir/Gider'),
+                        GestureDetector(
+                          child:
+                              cards("lib/assets/calculator.png", 'Gelir/Gider'),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CalcApp()
+                              ),
+                            );
+                          },
+                        ),
                         GestureDetector(
                           child: cards(
                             "lib/assets/messages.png",

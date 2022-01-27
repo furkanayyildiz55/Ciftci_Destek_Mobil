@@ -73,7 +73,7 @@ class _UzmanaSorState extends State<UzmanaSor> {
   Widget KullanicilariListele(AppUser GelenKullanici) {
     return GestureDetector(
       child: ListTile(
-        leading: Icon(Icons.account_circle_rounded,size:36 ,color: Colors.blue.shade300,),
+        leading: Text(GelenKullanici.uzmanMi==true ? "U": "Ç" ),
         title: Text(GelenKullanici.adSoyad.toString() , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
         subtitle: Row(
           children: [

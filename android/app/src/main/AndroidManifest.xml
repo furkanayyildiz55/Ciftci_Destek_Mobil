@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ciftci_destek_mobil">
    <application
-        android:label="ciftci_destek_mobil"
+        android:label="Çiftçi Destek"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
