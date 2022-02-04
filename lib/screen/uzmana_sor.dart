@@ -73,7 +73,10 @@ class _UzmanaSorState extends State<UzmanaSor> {
   Widget KullanicilariListele(AppUser GelenKullanici) {
     return GestureDetector(
       child: ListTile(
-        leading: Text(GelenKullanici.uzmanMi==true ? "U": "Ç" ),
+        leading: IconButton(
+          icon: icongetir(GelenKullanici),
+          onPressed: () { },
+        ),
         title: Text(GelenKullanici.adSoyad.toString() , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
         subtitle: Row(
           children: [
@@ -89,6 +92,18 @@ class _UzmanaSorState extends State<UzmanaSor> {
         Navigator.push(context, MaterialPageRoute(builder: (context)=>Mesajlasma(appUser: widget.appUser , uzmanUser: GelenKullanici )));
       },
     );
+  }
+
+  Widget icongetir( AppUser gelenKullanici) {
+
+    if(gelenKullanici.uzmanMi==true){
+      return Image.asset('lib/assets/u.png');
+    }
+    else{
+      return Image.asset('lib/assets/c.png');
+    }
+
+
   }
 
 

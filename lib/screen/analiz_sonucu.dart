@@ -1,11 +1,14 @@
+import 'package:ciftci_destek_mobil/models/app_user.dart';
 import 'package:ciftci_destek_mobil/screen/main_page.dart';
 import 'package:ciftci_destek_mobil/themes/main_colors.dart';
 import 'package:flutter/material.dart';
 
 class AnalizSonucu extends StatefulWidget {
+  AppUser? appUser;
   List<String>? besin_analiz_sonucu;
   List<String>? secilen_besin;
-  AnalizSonucu({this.besin_analiz_sonucu, this.secilen_besin, Key? key})
+  AnalizSonucu(
+      {this.appUser, this.besin_analiz_sonucu, this.secilen_besin, Key? key})
       : super(key: key);
 
   @override
@@ -16,24 +19,15 @@ class _AnalizSonucuState extends State<AnalizSonucu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        automaticallyImplyLeading: false,
+      appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: MainColors.Blue2,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          "Analiz Sonucu",
-        ),
+        title: Text('Analiz Sonucu'),
         actions: [
           IconButton(
-              onPressed: () {
-                                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext) => MainPaage()),
-                                (Route<dynamic> route) => false);
-              }, icon: const Icon(Icons.home))
+              onPressed: () async {}, icon: const Icon(Icons.switch_left_sharp))
         ],
       ),
         body: Container(
@@ -54,17 +48,27 @@ class _AnalizSonucuState extends State<AnalizSonucu> {
                   },
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                ElevatedButton(
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(MainColors.Blue2)),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 child: Text('Geri don'),
               ),
-              ElevatedButton(onPressed: () {}, child: Text('Anasayfa')),
-              ],)
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(MainColors.Blue2)),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MainPaage(appUser: widget.appUser)));
+                  },
+                  child: Text('Anasayfa')),
             ],
           ),
         ));

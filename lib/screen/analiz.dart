@@ -1,15 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:ciftci_destek_mobil/screen/analiz_sonucu.dart';
+import 'package:ciftci_destek_mobil/models/app_user.dart';
 import 'package:ciftci_destek_mobil/themes/main_colors.dart';
+import 'package:flutter/material.dart';
+
+import 'analiz_sonucu.dart';
+
 
 class ToprakAnalizi extends StatefulWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  AppUser? appUser;
   String text = '';
   List<String>? secilen_besin;
   List<String> girilen_deger = [];
   List<String> besinler = [];
   List<String> besin_analiz_sonucu = [];
-  ToprakAnalizi({this.secilen_besin, Key? key}) : super(key: key);
+  ToprakAnalizi({this.appUser,this.secilen_besin, Key? key}) : super(key: key);
 
   @override
   State<ToprakAnalizi> createState() => _ToprakAnaliziState();
@@ -80,7 +84,7 @@ class _ToprakAnaliziState extends State<ToprakAnalizi> {
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextFormField(
-                      keyboardType: TextInputType.number,
+                      
                       validator: (value) {
                         if (value!.isNotEmpty) {
                           return null;
@@ -93,6 +97,7 @@ class _ToprakAnaliziState extends State<ToprakAnalizi> {
                         widget.girilen_deger[index] = controllers[index].text;
                       },
                       decoration: InputDecoration(
+                          
                           labelText: widget.secilen_besin![index],
                           border: OutlineInputBorder()),
                     ),
@@ -100,9 +105,9 @@ class _ToprakAnaliziState extends State<ToprakAnalizi> {
                 },
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [            ElevatedButton(
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(MainColors.Blue2)),
               onPressed: () {
                 Navigator.of(context).pop();
                 widget.secilen_besin!.clear();
@@ -112,29 +117,30 @@ class _ToprakAnaliziState extends State<ToprakAnalizi> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                onPressed: () {
-                  if (widget._formKey.currentState!.validate()) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AnalizSonucu(
-                              besin_analiz_sonucu: widget.besin_analiz_sonucu,
-                              secilen_besin: widget.secilen_besin,
-                            )));
-                  }
-                  for (int i = 0; i < widget.secilen_besin!.length; i++) {
-                    for (int j = 0; j < widget.besinler.length; j++) {
-                      if (widget.secilen_besin![i] == widget.besinler[j]) {
-                        widget.besin_analiz_sonucu[i] = besinGonder(
-                            widget.besinler[j],
-                            double.parse(widget.girilen_deger[i]));
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(MainColors.Blue2)),
+                  onPressed: () {
+                    if (widget._formKey.currentState!.validate()) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AnalizSonucu(
+                            appUser: widget.appUser,
+                                besin_analiz_sonucu: widget.besin_analiz_sonucu,
+                                secilen_besin: widget.secilen_besin,
+                              )));
+                    }
+                    for (int i = 0; i < widget.secilen_besin!.length; i++) {
+                      for (int j = 0; j < widget.besinler.length; j++) {
+                        if (widget.secilen_besin![i] == widget.besinler[j]) {
+                          widget.besin_analiz_sonucu[i] = besinGonder(
+                              widget.besinler[j],
+                              double.parse(widget.girilen_deger[i]));
+                        }
                       }
                     }
-                  }
-                },
-                child: Text('Analiz et'),
-              ),
-            )],
-            ),
-
+                  },
+                  child: Text('Analiz et')),
+            )
           ],
         ),
       )),

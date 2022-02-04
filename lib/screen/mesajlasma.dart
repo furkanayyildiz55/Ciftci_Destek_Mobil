@@ -96,8 +96,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
               widget.uzmanUser!.adSoyad.toString(),
               overflow: TextOverflow.clip,
             ),
-            Text(widget.appUser!.uzmanMi==true ? "Uzman" : "Çiftçi" ,
-                style: TextStyle(color: Colors.green.shade200, fontSize: 13))
+            Uzmanmi(),
           ],
         ),
         SizedBox(
@@ -217,7 +216,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
                   Expanded(
                     child: TextField(
                       controller: _mesajController,
-                      decoration:const InputDecoration(
+                      decoration: const InputDecoration(
                           hintText: "Mesaj Yazınız...",
                           border: InputBorder.none),
                     ),
@@ -280,5 +279,19 @@ class _MesajlasmaState extends State<Mesajlasma> {
     var _formatter = DateFormat.Hm();
     var _formatlanmisTarih = _formatter.format(date!.toDate());
     return _formatlanmisTarih;
+  }
+
+  Widget Uzmanmi() {
+    if (widget.appUser!.uzmanMi == true) {
+      return Text(
+        "Uzman",
+        style: TextStyle(color: Colors.green.shade200, fontSize: 13),
+      );
+    } else {
+      return Text(
+        "Çiftçi ",
+        style: TextStyle(color: Colors.green.shade200, fontSize: 13),
+      );
+    }
   }
 }

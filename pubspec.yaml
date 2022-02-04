@@ -87,7 +87,8 @@ flutter:
   - lib/assets/fertilizer.png
   - lib/assets/vegetable.png
   - lib/assets/logo.png
-
+  - lib/assets/u.png
+  - lib/assets/c.png
 
   # assets:
   #   - images/a_dot_burr.jpeg

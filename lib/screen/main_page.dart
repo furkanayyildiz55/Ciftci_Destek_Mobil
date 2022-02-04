@@ -18,7 +18,7 @@ class MainPaage extends StatefulWidget {
   final String? userID;
   User? user = FirebaseAuth.instance.currentUser;
 
-  MainPaage({this.userID, Key? key}) : super(key: key);
+  MainPaage({this.appUser , this.userID, Key? key}) : super(key: key);
 
   @override
   _MainPaageState createState() => _MainPaageState();
@@ -28,7 +28,13 @@ class _MainPaageState extends State<MainPaage> {
   @override
   void initState() {
     super.initState();
-    KullaniciVerileriGetir();
+    if(widget.appUser==null ){
+          KullaniciVerileriGetir();
+    }
+    else{
+
+    }
+
     //UYARI GÖSTERİLMİYOR
     SchedulerBinding.instance!
         .addPostFrameCallback((_) => EmailDogrulamaUyarisi());
@@ -113,7 +119,7 @@ class _MainPaageState extends State<MainPaage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Listeleme()));
+                                    builder: (context) => Listeleme(appUser: widget.appUser,)));
                           },
                         ),
                         GestureDetector(
