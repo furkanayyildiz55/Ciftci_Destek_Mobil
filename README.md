@@ -1,16 +1,10 @@
-# ciftci_destek_mobil
+# Çiftçi Destek Uygulaması 
 
-A new Flutter project.
+Bu uygulama çiftçilerin toprak analizi sonuçlarını daha iyi değerlendirebilmeleri ve uzman ziraat mühendisleri ile daha kısa sürede iletişime geçebilmeleri amacı ile yapılmıştır.
+Uygulamanın amaçları, hedefleri ve yapım aşamasında kullanılan teknolojiler hakkında detaylı billgi sunum dosyasında bulunmaktadır.<
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# Uygulama Sayfaları
+Uygulama  sayfaları, ekran haritası görselinde ayrıntılı olarak belirtilmiştir. Ekranların tam olarak ne işe yaradıkları hakkında açıklama sunum dosyasında bulunmaktadır.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/furkanayyildiz55/Ciftci_Destek_Mobil/blob/main/ekran_haritalar%C4%B1.jpg" width="2000">
