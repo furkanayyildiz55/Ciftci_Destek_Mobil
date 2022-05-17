@@ -1,3 +1,4 @@
+# Bu Proje Tübitak 2209-A Kapsamında Desteklenmektedir
 # Çiftçi Destek Uygulaması 
 
 Bu uygulama **çiftçilerin toprak analizi sonuçlarını daha iyi değerlendirebilmeleri ve uzman ziraat mühendisleri ile daha kısa sürede iletişime geçebilmeleri** amacı ile yapılmıştır.
