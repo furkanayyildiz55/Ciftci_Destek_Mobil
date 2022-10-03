@@ -3,6 +3,7 @@ import 'package:ciftci_destek_mobil/models/firestore_db_services.dart';
 import 'package:ciftci_destek_mobil/screen/calc_page.dart';
 import 'package:ciftci_destek_mobil/screen/conversion_page.dart';
 import 'package:ciftci_destek_mobil/screen/gubre_fiyatlari.dart';
+import 'package:ciftci_destek_mobil/screen/hal_fiyatlar%C4%B1.dart';
 import 'package:ciftci_destek_mobil/screen/hava_durumu.dart';
 import 'package:ciftci_destek_mobil/screen/listeleme.dart';
 import 'package:ciftci_destek_mobil/screen/user_profile.dart';
@@ -18,7 +19,7 @@ class MainPaage extends StatefulWidget {
   final String? userID;
   User? user = FirebaseAuth.instance.currentUser;
 
-  MainPaage({this.appUser , this.userID, Key? key}) : super(key: key);
+  MainPaage({this.appUser, this.userID, Key? key}) : super(key: key);
 
   @override
   _MainPaageState createState() => _MainPaageState();
@@ -28,16 +29,12 @@ class _MainPaageState extends State<MainPaage> {
   @override
   void initState() {
     super.initState();
-    if(widget.appUser==null ){
-          KullaniciVerileriGetir();
-    }
-    else{
-
-    }
+    if (widget.appUser == null) {
+      KullaniciVerileriGetir();
+    } else {}
 
     //UYARI GÖSTERİLMİYOR
-    SchedulerBinding.instance!
-        .addPostFrameCallback((_) => EmailDogrulamaUyarisi());
+    SchedulerBinding.instance!.addPostFrameCallback((_) => EmailDogrulamaUyarisi());
   }
 
   @override
@@ -79,24 +76,20 @@ class _MainPaageState extends State<MainPaage> {
                         children: <Widget>[
                           Material(
                             elevation: 5.0,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
+                            borderRadius: const BorderRadius.all(Radius.circular(30)),
                             child: TextField(
-                              controller:
-                                  TextEditingController(text: 'Search...'),
+                              controller: TextEditingController(text: 'Search...'),
                               cursorColor: Theme.of(context).primaryColor,
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 18),
+                              style: const TextStyle(color: Colors.black, fontSize: 18),
                               decoration: const InputDecoration(
                                   suffixIcon: Material(
                                     elevation: 2.0,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(30)),
+                                    borderRadius: BorderRadius.all(Radius.circular(30)),
                                     child: Icon(Icons.search),
                                   ),
                                   border: InputBorder.none,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 25, vertical: 13)),
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
                             ),
                           ),
                         ],
@@ -119,7 +112,9 @@ class _MainPaageState extends State<MainPaage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Listeleme(appUser: widget.appUser,)));
+                                    builder: (context) => Listeleme(
+                                          appUser: widget.appUser,
+                                        )));
                           },
                         ),
                         GestureDetector(
@@ -129,20 +124,15 @@ class _MainPaageState extends State<MainPaage> {
                           ),
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home()));
+                                context, MaterialPageRoute(builder: (context) => Home()));
                           },
                         ),
                         GestureDetector(
-                          child:
-                              cards("lib/assets/calculator.png", 'Gelir/Gider'),
+                          child: cards("lib/assets/calculator.png", 'Gelir/Gider'),
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => CalcApp()
-                              ),
+                              MaterialPageRoute(builder: (context) => CalcApp()),
                             );
                           },
                         ),
@@ -160,18 +150,21 @@ class _MainPaageState extends State<MainPaage> {
                                         )));
                           },
                         ),
-                        cards("lib/assets/fertilizer.png", 'Hal Fiyatları'),
+                        GestureDetector(
+                          child: cards("lib/assets/fertilizer.png", 'Hal Fiyatları'),
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const HalFiyatlari()));
+                          },
+                        ),
                         GestureDetector(
                           child: cards(
                             "lib/assets/logo.png",
                             'Döviz Kuru',
                           ),
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ConversionPage()));
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const ConversionPage()));
                           },
                         ),
                       ],
@@ -213,9 +206,7 @@ class _MainPaageState extends State<MainPaage> {
             const SizedBox(
               height: 5,
             ),
-            Text(title,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             // Container(
             //   padding: const EdgeInsets.all(5),
             //   margin: const EdgeInsets.only(top: 4),
@@ -240,8 +231,7 @@ class _MainPaageState extends State<MainPaage> {
     firestoreDbService.readUser(widget.userID).then((value) {
       widget.appUser = value;
       Fluttertoast.showToast(msg: "Hoşgeldin ${widget.appUser!.adSoyad}");
-      debugPrint(
-          "Main Page- User verileri çekildi : ${widget.appUser!.adSoyad}");
+      debugPrint("Main Page- User verileri çekildi : ${widget.appUser!.adSoyad}");
     });
   }
 
