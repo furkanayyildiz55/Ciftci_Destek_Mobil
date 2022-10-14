@@ -48,21 +48,11 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: ekranBoyutu / 5,
               ),
               GestureDetector(
-                child:const Text(
-                  "FTT Yapımıdır",
+                child: const Text(
+                  "Leaf Grunt Studio",
                   style: TextStyle(color: MainColors.Blue2),
                 ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext) => UserProfile(
-                                appUser: AppUser(
-                                    Parola: "sad",
-                                    eMail: "deneme@deneme.com",
-                                    userID: "Furkan Ayyıldız"),
-                              )));
-                },
+                onTap: () {},
               )
             ],
           ),
@@ -74,8 +64,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget _submitButton() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -102,8 +91,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget _signUpButton() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -135,10 +123,7 @@ class _WelcomePageState extends State<WelcomePage> {
           height: 10,
         ),
         const Text("Çiftçi Destek",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-                color: Color(0xff22577A)))
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: Color(0xff22577A)))
       ],
     );
   }

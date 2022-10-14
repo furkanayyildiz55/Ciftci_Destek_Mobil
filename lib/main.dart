@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:ciftci_destek_mobil/screen/hal_fiyatlar%C4%B1.dart';
-import 'package:ciftci_destek_mobil/screen/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ciftci_destek_mobil/screen/welcome_page.dart';
@@ -36,8 +33,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      //home: WelcomePage(),
-      home: MainPaage(),
+      home: WelcomePage(),
     );
   }
 }

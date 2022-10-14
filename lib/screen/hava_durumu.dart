@@ -41,85 +41,75 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation:0,
-        backgroundColor: Colors.red,
-      ),
-        body: Column(
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height / 3,
-          width: MediaQuery.of(context).size.width,
-          color: Colors.red,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: Text("Şuan Yozgat'da",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.0)),
-              ),
-              Text(
-                temp != null
-                    ? (5 / 9 * (temp - 32)).round().toString() + "\u00B0"
-                    : "Yükleniyor",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.w600),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Text(
-                  currently != null ? currently.toString() : "Yükleniyor",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600),
-                ),
-              )
-            ],
-          ),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.red,
         ),
-        Expanded(
-            child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                leading: FaIcon(FontAwesomeIcons.thermometerHalf),
-                title: Text("Sıcaklık"),
-                trailing: Text(temp != null
-                    ? (5 / 9 * (temp - 32)).round().toString() + "\u00B0"
-                    : "Yükleniyor"),
+        body: Column(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height / 3,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.red,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    child: Text("Şuan Yozgat'da",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14.0)),
+                  ),
+                  Text(
+                    temp != null
+                        ? (5 / 9 * (temp - 32)).round().toString() + "\u00B0"
+                        : "Yükleniyor",
+                    style:
+                        TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      currently != null ? currently.toString() : "Yükleniyor",
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.w600),
+                    ),
+                  )
+                ],
               ),
-              ListTile(
-                leading: FaIcon(FontAwesomeIcons.cloud),
-                title: Text("Hava"),
-                trailing: Text(description != null
-                    ? description.toString()
-                    : "Yükleniyor"),
+            ),
+            Expanded(
+                child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: ListView(
+                children: <Widget>[
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.thermometerHalf),
+                    title: Text("Sıcaklık"),
+                    trailing: Text(temp != null
+                        ? (5 / 9 * (temp - 32)).round().toString() + "\u00B0"
+                        : "Yükleniyor"),
+                  ),
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.cloud),
+                    title: Text("Hava"),
+                    trailing: Text(description != null ? description.toString() : "Yükleniyor"),
+                  ),
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.sun),
+                    title: Text("Sıcaklık Nem"),
+                    trailing: Text(humidity != null ? humidity.toString() : "Yükleniyor"),
+                  ),
+                  ListTile(
+                    leading: FaIcon(FontAwesomeIcons.wind),
+                    title: Text("Rüzgar Hızı"),
+                    trailing: Text(windSpeed != null ? windSpeed.toString() : "Yükleniyor"),
+                  )
+                ],
               ),
-              ListTile(
-                leading: FaIcon(FontAwesomeIcons.sun),
-                title: Text("Sıcaklık Nem"),
-                trailing:
-                    Text(humidity != null ? humidity.toString() : "Yükleniyor"),
-              ),
-              ListTile(
-                leading: FaIcon(FontAwesomeIcons.wind),
-                title: Text("Rüzgar Hızı"),
-                trailing: Text(
-                    windSpeed != null ? windSpeed.toString() : "Yükleniyor"),
-              )
-            ],
-          ),
-        ))
-      ],
-    ));
+            ))
+          ],
+        ));
   }
 }

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1040751833424:android:3cdcd50f7c01a103ed3c55",
         "android_client_info": {
-          "package_name": "com.example.ciftci_destek_mobil"
+          "package_name": "com.ciftcidestek.packagename"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1040751833424-6k9658vnccgmm7gj3v5v6q84oqi7p2ok.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ciftci_destek_mobil",
+            "package_name": "com.ciftcidestek.packagename",
             "certificate_hash": "5371bfd493a7526659e86b229eea69e5ca518cf6"
           }
         },

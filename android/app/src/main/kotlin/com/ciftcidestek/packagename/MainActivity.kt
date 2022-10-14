@@ -1,4 +1,4 @@
-package com.example.ciftci_destek_mobil
+package com.ciftcidestek.packagename
 
 import io.flutter.embedding.android.FlutterActivity
 

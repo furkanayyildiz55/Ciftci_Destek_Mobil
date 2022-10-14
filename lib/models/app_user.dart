@@ -5,10 +5,9 @@ class AppUser {
   String? eMail;
   String? parola;
   String? adSoyad;
-  String? konum="Girilmedi";
-  bool? uzmanMi=false;
-  bool? mailDogrulamasi=false;
-  
+  String? konum = "Girilmedi";
+  bool? uzmanMi = false;
+  bool? mailDogrulamasi = false;
 
   AppUser({userID, eMail, Parola});
 
@@ -16,21 +15,18 @@ class AppUser {
     return {
       "userID": userID,
       "eMail": eMail,
-      "parola": parola,
-      "adSoyad" : adSoyad,
-      "konum" : konum,
-      "uzmanMi" : uzmanMi,
-      "mailDogrulamasi" : mailDogrulamasi,
+      "adSoyad": adSoyad,
+      "konum": konum,
+      "uzmanMi": uzmanMi,
+      "mailDogrulamasi": mailDogrulamasi,
     };
   }
 
-  AppUser.fromMap(Map<String , dynamic> map):
-    userID = map["userID"],
-    eMail = map["eMail"],
-    parola = map["parola"],
-    adSoyad = map["adSoyad"],
-    konum = map["konum"],
-    uzmanMi = map["uzmanMi"],
-    mailDogrulamasi = map["mailDogrulamasi"];
-
+  AppUser.fromMap(Map<String, dynamic> map)
+      : userID = map["userID"],
+        eMail = map["eMail"],
+        adSoyad = map["adSoyad"],
+        konum = map["konum"],
+        uzmanMi = map["uzmanMi"],
+        mailDogrulamasi = map["mailDogrulamasi"];
 }
