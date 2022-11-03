@@ -7,6 +7,7 @@ import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:ciftci_destek_mobil/themes/main_colors.dart';
 
@@ -40,11 +41,13 @@ class _MesajlasmaState extends State<Mesajlasma> {
           children: [
             Expanded(
               child: StreamBuilder<List<Mesaj>>(
-                stream: firestoreDbServices.getMesages(
-                    mesajGonderenID, mesajAlanID),
+                stream: firestoreDbServices.getMesages(mesajGonderenID, mesajAlanID),
                 builder: (context, streamMesajlarListesi) {
                   if (!streamMesajlarListesi.hasData) {
-                    return CircularProgressIndicator();
+                    return const SpinKitWave(
+                      color: Colors.blueAccent,
+                      size: 50.0,
+                    );
                   }
                   List<Mesaj>? tumMesajlar = streamMesajlarListesi.data;
 
@@ -123,8 +126,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * .6),
+              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .6),
               padding: const EdgeInsets.all(15.0),
               decoration: BoxDecoration(
                 color: Colors.grey.shade300,
@@ -155,8 +157,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
   Widget mesajGonderici(BuildContext context, Mesaj gosterilecekMesaj) {
     String _saaatDakikaDegeri = "R";
     try {
-      _saaatDakikaDegeri =
-          SaatDakikaGoster(gosterilecekMesaj.date ?? Timestamp(1, 1));
+      _saaatDakikaDegeri = SaatDakikaGoster(gosterilecekMesaj.date ?? Timestamp(1, 1));
     } catch (e) {}
 
     return Row(
@@ -166,8 +167,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Container(
-              constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * .6),
+              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .6),
               padding: const EdgeInsets.all(15.0),
               decoration: const BoxDecoration(
                 color: MainColors.Green1,
@@ -206,8 +206,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(35.0),
                 boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)
+                  BoxShadow(offset: Offset(0, 3), blurRadius: 5, color: Colors.grey)
                 ],
               ),
               child: Row(
@@ -217,22 +216,19 @@ class _MesajlasmaState extends State<Mesajlasma> {
                     child: TextField(
                       controller: _mesajController,
                       decoration: const InputDecoration(
-                          hintText: "Mesaj Yazınız...",
-                          border: InputBorder.none),
+                          hintText: "Mesaj Yazınız...", border: InputBorder.none),
                     ),
                   ),
                   IconButton(
                     icon: const Icon(Icons.photo_camera),
                     onPressed: () {
-                      Fluttertoast.showToast(
-                          msg: "Bu Hizmet Aktif Edilmemiştir..");
+                      Fluttertoast.showToast(msg: "Bu Hizmet Aktif Edilmemiştir..");
                     },
                   ),
                   IconButton(
                     icon: const Icon(Icons.attach_file),
                     onPressed: () {
-                      Fluttertoast.showToast(
-                          msg: "Bu Hizmet Aktif Edilmemiştir..");
+                      Fluttertoast.showToast(msg: "Bu Hizmet Aktif Edilmemiştir..");
                     },
                   )
                 ],
@@ -242,8 +238,7 @@ class _MesajlasmaState extends State<Mesajlasma> {
           SizedBox(width: 15),
           Container(
             padding: const EdgeInsets.all(15.0),
-            decoration: const BoxDecoration(
-                color: MainColors.Green1, shape: BoxShape.circle),
+            decoration: const BoxDecoration(color: MainColors.Green1, shape: BoxShape.circle),
             child: InkWell(
               child: const Icon(
                 Icons.send_outlined,
@@ -256,15 +251,13 @@ class _MesajlasmaState extends State<Mesajlasma> {
                       kimden: mesajGonderenID,
                       kime: mesajAlanId,
                       mesaj: _mesajController.text);
-                  var sonuc =
-                      await firestoreDbServices.saveMessage(kaydedilecekMesaj);
+                  var sonuc = await firestoreDbServices.saveMessage(kaydedilecekMesaj);
                   if (sonuc) {
                     _mesajController.clear();
                   } else {
                     _mesajController.text = "Mesaj Gönderiminde Hata";
                     _scrollController.animateTo(00,
-                        duration: const Duration(milliseconds: 100),
-                        curve: Curves.easeOut);
+                        duration: const Duration(milliseconds: 100), curve: Curves.easeOut);
                   }
                 }
               },

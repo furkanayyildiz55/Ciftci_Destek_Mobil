@@ -1,7 +1,7 @@
 import 'package:ciftci_destek_mobil/services/price_model.dart';
 import 'package:ciftci_destek_mobil/services/prices_post_services.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../themes/main_colors.dart';
 
 class HalFiyatlari extends StatefulWidget {
@@ -40,7 +40,11 @@ class _HalFiyatlariState extends State<HalFiyatlari> {
         actions: [IconButton(onPressed: () async {}, icon: const Icon(Icons.switch_left_sharp))],
       ),
       body: _items == null
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: SpinKitWave(
+              color: Colors.blueAccent,
+              size: 50.0,
+            ))
           : ListView.builder(
               itemCount: _items?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {

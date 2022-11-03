@@ -50,8 +50,6 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   _submitButton(),
                   _forgorPassword(),
-                  _divider(),
-                  _googleButton(),
                   SizedBox(height: height * .055),
                   //_createAccountLabel(),
                 ],
@@ -117,9 +115,7 @@ class _LoginPageState extends State<LoginPage> {
               parola = alinanParola;
             },
             validator: (alinanParola) {
-              return alinanParola!.length >= 4
-                  ? null
-                  : "Parola en az 4 karakter olmalıdır";
+              return alinanParola!.length >= 4 ? null : "Parola en az 4 karakter olmalıdır";
             },
             obscureText: true,
             decoration: const InputDecoration(
@@ -195,8 +191,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
-
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -210,8 +204,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(left: 0, top: 10, bottom: 10),
               child: const Icon(Icons.keyboard_arrow_left, color: Colors.black),
             ),
-            const Text('Geri',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
+            const Text('Geri', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
           ],
         ),
       ),
@@ -220,10 +213,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _title() {
     return const Text("Çiftçi Destek",
-        style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: Color(0xff22577A)));
+        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: Color(0xff22577A)));
   }
 
   Widget _divider() {
@@ -273,16 +263,13 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5)),
+                borderRadius:
+                    BorderRadius.only(bottomLeft: Radius.circular(5), topLeft: Radius.circular(5)),
               ),
               alignment: Alignment.center,
               child: Text('G',
                   style: TextStyle(
-                      color: Color(0xff22577A),
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400)),
+                      color: Color(0xff22577A), fontSize: 25, fontWeight: FontWeight.w400)),
             ),
           ),
           Expanded(
@@ -292,15 +279,11 @@ class _LoginPageState extends State<LoginPage> {
                 border: Border.all(color: Color(0xff22577A), width: 2),
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
+                    bottomRight: Radius.circular(5), topRight: Radius.circular(5)),
               ),
               alignment: Alignment.center,
               child: Text('Log in with Google',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400)),
+                  style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w400)),
             ),
           ),
         ],
@@ -312,8 +295,13 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       alignment: Alignment.centerRight,
-      child: const Text('Sifremi Unuttum ?',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+      child: TextButton(
+        child:
+            Text("Sifremi Unuttum ?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+        onPressed: () {
+          Fluttertoast.showToast(msg: "İletişime geçin leafgruntstudio@gmail.com");
+        },
+      ),
     );
   }
 }
